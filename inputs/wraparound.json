@@ -1,0 +1,1 @@
+{"bits":2,"budget":1,"id":"wraparound","memory_size":1,"metric":"hamming","program":[["load",0,0],["add",1,"r0",3],["emit","r1"]],"registers":3,"weights":[1],"worlds":[{"faults":[0],"id":"0","memory":[0]},{"faults":[0],"id":"1","memory":[1]},{"faults":[0],"id":"2","memory":[2]},{"faults":[0],"id":"3","memory":[3]}]}

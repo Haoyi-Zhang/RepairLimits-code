@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "case": "guarded-2-diagonal",
+      "dimensions": 2,
+      "worlds": 4,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 16,
+      "variable_order": "interleaved",
+      "instructions": 20,
+      "minimum_core": 4,
+      "certificate_nodes": 23,
+      "oracle_paths": 16,
+      "oracle_combinations": 28,
+      "deletion_checks": 4,
+      "leaked_observation_rejected": true
+    },
+    {
+      "case": "guarded-3-mixed",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 41,
+      "variable_order": "interleaved",
+      "instructions": 33,
+      "minimum_core": 8,
+      "certificate_nodes": 47,
+      "oracle_paths": 64,
+      "oracle_combinations": 256,
+      "deletion_checks": 8,
+      "leaked_observation_rejected": true
+    },
+    {
+      "case": "guarded-4-diagonal",
+      "dimensions": 4,
+      "worlds": 16,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 52,
+      "variable_order": "interleaved",
+      "instructions": 38,
+      "minimum_core": 16,
+      "certificate_nodes": 95,
+      "oracle_paths": 256,
+      "oracle_combinations": 1936,
+      "deletion_checks": 16,
+      "leaked_observation_rejected": true
+    }
+  ],
+  "cpu_seconds": 0.42011310700000004,
+  "wall_seconds": 0.4208886920000623,
+  "peak_rss_kib": 96808,
+  "workers": 1
+}

@@ -1,0 +1,1 @@
+{"bits":2,"budget":1,"id":"dynamic-address","memory_size":2,"metric":"hamming","program":[["load",0,0],["load",1,"r0"],["emit","r1"]],"registers":3,"weights":[1],"worlds":[{"faults":[0],"id":"0","memory":[0,1]},{"faults":[],"id":"1","memory":[0,1]},{"faults":[0],"id":"2","memory":[1,0]},{"faults":[],"id":"3","memory":[1,0]}]}

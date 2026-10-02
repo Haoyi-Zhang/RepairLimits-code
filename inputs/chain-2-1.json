@@ -1,0 +1,1 @@
+{"bits":1,"budget":1,"id":"chain-2-1","memory_size":2,"metric":"hamming","program":[["load",0,0],["emit","r0"],["load",0,1],["emit","r0"]],"registers":1,"weights":[1,1],"worlds":[{"faults":[2],"id":"00","memory":[0,0]},{"faults":[2],"id":"01","memory":[0,1]},{"faults":[2],"id":"10","memory":[1,0]},{"faults":[2],"id":"11","memory":[1,1]}]}

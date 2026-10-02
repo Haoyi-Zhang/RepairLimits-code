@@ -1,0 +1,13 @@
+case,worlds,instructions,value,certificate_nodes
+guarded-1-diagonal,2,11,1,7
+guarded-1-mixed,2,11,1,7
+guarded-2-diagonal,4,20,1,23
+guarded-2-mixed,4,22,1,23
+guarded-3-diagonal,8,29,1,47
+guarded-3-mixed,8,33,1,47
+guarded-4-diagonal,16,38,1,95
+guarded-4-mixed,16,46,1,95
+guarded-5-diagonal,32,47,1,191
+guarded-5-mixed,32,57,1,191
+guarded-6-diagonal,64,56,1,383
+guarded-6-mixed,64,70,1,383

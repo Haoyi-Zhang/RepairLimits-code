@@ -1,0 +1,1 @@
+{"bits":3,"budget":1,"id":"word-center","memory_size":1,"metric":"word","program":[["load",0,0],["emit","r0"]],"registers":3,"weights":[1],"worlds":[{"faults":[0],"id":"0","memory":[0]},{"faults":[0],"id":"1","memory":[3]},{"faults":[0],"id":"2","memory":[7]}]}

@@ -1,0 +1,29 @@
+{
+  "assurance_nonresource": {
+    "errors": [],
+    "failures": [],
+    "skipped": [],
+    "successful": true,
+    "tests": 16,
+    "workers": 1
+  },
+  "assurance_nonresource_equal": true,
+  "campaign_evidence_byte_mismatches": [],
+  "campaign_evidence_files_compared": 899,
+  "final_audit_nonresource": {
+    "abstract_games_accounted": 98304,
+    "bibliography_rows_checked": 30,
+    "chunks_checked": 100,
+    "exact_oracles_recomputed": 349,
+    "explicit_certificates_rechecked": 374,
+    "external_resource_rows_checked": 35,
+    "policy_replays_recomputed": 374,
+    "status": "pass",
+    "symbolic_rows_accounted": 80,
+    "two_tail_replays_recomputed": 40,
+    "workers": 1
+  },
+  "final_audit_nonresource_equal": true,
+  "root_generated_input_byte_mismatches": [],
+  "root_generated_inputs_compared": 374
+}

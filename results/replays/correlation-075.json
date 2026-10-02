@@ -1,0 +1,1 @@
+[{"actual":[0,0,0],"loss":0,"reference":[0,0,0],"world":"000"},{"actual":[0,0,0],"loss":1,"reference":[0,0,1],"world":"001"},{"actual":[0,0,0],"loss":2,"reference":[0,1,1],"world":"011"},{"actual":[0,0,0],"loss":2,"reference":[1,1,0],"world":"110"}]

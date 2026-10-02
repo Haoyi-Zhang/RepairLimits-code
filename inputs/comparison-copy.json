@@ -1,0 +1,1 @@
+{"bits":2,"budget":1,"id":"comparison-copy","memory_size":1,"metric":"hamming","program":[["load",0,0],["lt",1,"r0",2],["eq",2,"r0",0],["copy",0,"r1"],["emit","r0"],["emit","r2"],["halt"]],"registers":3,"weights":[1,1],"worlds":[{"faults":[0],"id":"0","memory":[0]},{"faults":[0],"id":"1","memory":[1]},{"faults":[0],"id":"2","memory":[2]},{"faults":[0],"id":"3","memory":[3]}]}

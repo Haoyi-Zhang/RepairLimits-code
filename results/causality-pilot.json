@@ -1,0 +1,222 @@
+{
+  "cases": [
+    {
+      "case": "guarded-2-diagonal-observe-none",
+      "dimensions": 2,
+      "worlds": 4,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 16,
+      "variable_order": "interleaved",
+      "instructions": 20,
+      "minimum_core": 4,
+      "exact_nodes": 23,
+      "oracle_paths": 16,
+      "oracle_combinations": 28,
+      "policy_replay_worlds": 4,
+      "two_tail_replay_worlds": 0
+    },
+    {
+      "case": "guarded-3-diagonal-observe-0.0",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "repairable",
+      "uniform_optimum": 0,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 35,
+      "variable_order": "interleaved",
+      "instructions": 30,
+      "policy": {
+        "decision": 0,
+        "pc": 1,
+        "component_kind": "register",
+        "component_index": 1,
+        "first_word": [
+          0,
+          0,
+          0
+        ],
+        "second_word": [
+          1,
+          0,
+          0
+        ],
+        "first_diagonal_bit": 1,
+        "second_diagonal_bit": 0
+      },
+      "exact_nodes": 79,
+      "oracle_paths": 64,
+      "oracle_combinations": 112,
+      "policy_replay_worlds": 8,
+      "two_tail_replay_worlds": 8
+    },
+    {
+      "case": "guarded-3-diagonal-observe-2.0",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 31,
+      "variable_order": "interleaved",
+      "instructions": 30,
+      "minimum_core": 8,
+      "exact_nodes": 79,
+      "oracle_paths": 64,
+      "oracle_combinations": 280,
+      "policy_replay_worlds": 8,
+      "two_tail_replay_worlds": 0
+    },
+    {
+      "case": "guarded-3-diagonal-observe-2.2",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "repairable",
+      "uniform_optimum": 0,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 31,
+      "variable_order": "interleaved",
+      "instructions": 30,
+      "policy": {
+        "decision": 2,
+        "pc": 5,
+        "component_kind": "register",
+        "component_index": 1,
+        "first_word": [
+          0,
+          0,
+          0
+        ],
+        "second_word": [
+          0,
+          0,
+          1
+        ],
+        "first_diagonal_bit": 1,
+        "second_diagonal_bit": 0
+      },
+      "exact_nodes": 63,
+      "oracle_paths": 64,
+      "oracle_combinations": 112,
+      "policy_replay_worlds": 8,
+      "two_tail_replay_worlds": 8
+    },
+    {
+      "case": "guarded-3-mixed-observe-2.0",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 41,
+      "variable_order": "interleaved",
+      "instructions": 34,
+      "minimum_core": 8,
+      "exact_nodes": 79,
+      "oracle_paths": 64,
+      "oracle_combinations": 296,
+      "policy_replay_worlds": 8,
+      "two_tail_replay_worlds": 0
+    },
+    {
+      "case": "guarded-3-mixed-observe-1.2",
+      "dimensions": 3,
+      "worlds": 8,
+      "classification": "repairable",
+      "uniform_optimum": 0,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 46,
+      "variable_order": "interleaved",
+      "instructions": 34,
+      "policy": {
+        "decision": 1,
+        "pc": 3,
+        "component_kind": "register",
+        "component_index": 1,
+        "first_word": [
+          0,
+          0,
+          0
+        ],
+        "second_word": [
+          0,
+          1,
+          0
+        ],
+        "first_diagonal_bit": 0,
+        "second_diagonal_bit": 1
+      },
+      "exact_nodes": 63,
+      "oracle_paths": 64,
+      "oracle_combinations": 192,
+      "policy_replay_worlds": 8,
+      "two_tail_replay_worlds": 8
+    },
+    {
+      "case": "guarded-4-diagonal-observe-1.0-3.1",
+      "dimensions": 4,
+      "worlds": 16,
+      "classification": "obstruction",
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 52,
+      "variable_order": "interleaved",
+      "instructions": 40,
+      "minimum_core": 16,
+      "exact_nodes": 287,
+      "oracle_paths": 256,
+      "oracle_combinations": 10800,
+      "policy_replay_worlds": 16,
+      "two_tail_replay_worlds": 0
+    },
+    {
+      "case": "guarded-4-mixed-observe-2.3",
+      "dimensions": 4,
+      "worlds": 16,
+      "classification": "repairable",
+      "uniform_optimum": 0,
+      "hindsight_optimum": 0,
+      "output_bits": 1,
+      "allocated_bdd_nodes": 97,
+      "variable_order": "interleaved",
+      "instructions": 47,
+      "policy": {
+        "decision": 2,
+        "pc": 5,
+        "component_kind": "register",
+        "component_index": 1,
+        "first_word": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "second_word": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "first_diagonal_bit": 0,
+        "second_diagonal_bit": 1
+      },
+      "exact_nodes": 127,
+      "oracle_paths": 256,
+      "oracle_combinations": 832,
+      "policy_replay_worlds": 16,
+      "two_tail_replay_worlds": 16
+    }
+  ],
+  "cpu_seconds": 0.10098528899999992,
+  "wall_seconds": 0.10486861899994437,
+  "peak_rss_kib": 95168,
+  "workers": 1
+}

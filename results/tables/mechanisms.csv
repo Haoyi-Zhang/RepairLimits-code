@@ -1,0 +1,13 @@
+case,bits,worlds,instructions,value,zero_value
+overwritten-read,1,2,3,0,0
+correlated-xor,1,2,4,0,0
+independent-xor,1,4,4,1,1
+lost-write,1,4,4,1,1
+alias-write,2,4,4,1,1
+dynamic-address,2,4,3,0,1
+branch-length,1,2,5,3,3
+wraparound,2,4,3,2,2
+absolute-center,3,3,2,4,7
+word-center,3,3,2,1,1
+weighted-debt,1,2,4,3,4
+comparison-copy,2,4,7,1,2

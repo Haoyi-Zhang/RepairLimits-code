@@ -1,0 +1,1 @@
+{"case":"chain-1-1","nodes":{"0":{"children":{"[\"halt\",2,[0],[0]]":"1","[\"halt\",2,[1],[1]]":"2"},"kind":"split","value":0},"1":{"costs":{"0":0},"kind":"leaf","value":0},"2":{"costs":{"1":0},"kind":"leaf","value":0}},"root":"0","value":0}

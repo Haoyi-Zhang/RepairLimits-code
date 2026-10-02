@@ -1,0 +1,1 @@
+{"bits":1,"budget":1,"id":"branch-length","memory_size":1,"metric":"hamming","program":[["load",0,0],["branch","r0",4],["emit",0],["emit",1],["emit","r0"]],"registers":3,"weights":[1,1,1],"worlds":[{"faults":[0],"id":"0","memory":[0]},{"faults":[0],"id":"1","memory":[1]}]}

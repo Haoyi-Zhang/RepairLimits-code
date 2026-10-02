@@ -1,0 +1,1 @@
+{"bits":1,"budget":1,"id":"overwritten-read","memory_size":1,"metric":"hamming","program":[["load",0,0],["const",0,1],["emit","r0"]],"registers":3,"weights":[1],"worlds":[{"faults":[0],"id":"0","memory":[0]},{"faults":[0],"id":"1","memory":[1]}]}

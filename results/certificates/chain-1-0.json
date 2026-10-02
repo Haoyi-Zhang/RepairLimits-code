@@ -1,0 +1,1 @@
+{"case":"chain-1-0","nodes":{"0":{"best":0,"children":{"0":"1","1":"2"},"kind":"choice","value":1},"1":{"costs":{"0":0,"1":1},"kind":"leaf","value":1},"2":{"costs":{"0":1,"1":0},"kind":"leaf","value":1}},"root":"0","value":1}

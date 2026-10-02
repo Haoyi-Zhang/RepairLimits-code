@@ -1,0 +1,175 @@
+{
+  "case": "inputs/regression/oracle-1024-no-faults.json",
+  "cli_classification_regression": {
+    "controlled_resource": {
+      "command": "python -m repair.cli symbolic inputs/implicit/guarded-20-mixed.json --order actions-first",
+      "resource_observation": "Command exited with non-zero status 3\nelapsed=0.80\nmaxrss_kib=150280\nexit=3\n",
+      "return_code": 3,
+      "stderr_json": {
+        "reason": "BDD node budget exceeded",
+        "stage": "semantic-search",
+        "status": "unknown-resource"
+      }
+    },
+    "malformed_input": {
+      "command": "python -m repair.cli solve inputs/regression/malformed-missing-fields.json",
+      "resource_observation": "Command exited with non-zero status 2\nelapsed=0.54\nmaxrss_kib=92848\nexit=2\n",
+      "return_code": 2,
+      "stderr_json": {
+        "reason": "case fields",
+        "stage": "input-validation",
+        "status": "rejected"
+      }
+    }
+  },
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "recursion_limit": 1000
+  },
+  "existing_evidence_recheck": {
+    "assurance_nonresource": {
+      "errors": [],
+      "failures": [],
+      "skipped": [],
+      "successful": true,
+      "tests": 16,
+      "workers": 1
+    },
+    "assurance_nonresource_equal": true,
+    "campaign_evidence_byte_mismatches": [],
+    "campaign_evidence_files_compared": 899,
+    "final_audit_nonresource": {
+      "abstract_games_accounted": 98304,
+      "bibliography_rows_checked": 30,
+      "chunks_checked": 100,
+      "exact_oracles_recomputed": 349,
+      "explicit_certificates_rechecked": 374,
+      "external_resource_rows_checked": 35,
+      "policy_replays_recomputed": 374,
+      "status": "pass",
+      "symbolic_rows_accounted": 80,
+      "two_tail_replays_recomputed": 40,
+      "workers": 1
+    },
+    "final_audit_nonresource_equal": true,
+    "root_generated_input_byte_mismatches": [],
+    "root_generated_inputs_compared": 374
+  },
+  "fresh_archive_full_execution": {
+    "assurance_nonresource": {
+      "errors": [],
+      "failures": [],
+      "skipped": [],
+      "successful": true,
+      "tests": 16,
+      "workers": 1
+    },
+    "compared_file_sets_equal": true,
+    "completed_through_final_audit": true,
+    "excluded_from_equality_only": [
+      "CPU time",
+      "wall time",
+      "peak RSS"
+    ],
+    "files_compared": 1380,
+    "final_audit_nonresource": {
+      "abstract_games_accounted": 98304,
+      "bibliography_rows_checked": 30,
+      "chunks_checked": 100,
+      "exact_oracles_recomputed": 349,
+      "explicit_certificates_rechecked": 374,
+      "external_resource_rows_checked": 35,
+      "policy_replays_recomputed": 374,
+      "status": "pass",
+      "symbolic_rows_accounted": 80,
+      "two_tail_replays_recomputed": 40,
+      "workers": 1
+    },
+    "inputs_or_results_deleted_before_execution": false,
+    "note": "The extraction itself was fresh. Existing retained files were not used as success criteria; every fixed chunk was executed and atomically overwritten before aggregation and final audit.",
+    "raw_byte_equal_files": 1273,
+    "resource_normalized_equal_files": 107,
+    "scientific_differences": [],
+    "scope": {
+      "certificates": 374,
+      "chunks": 100,
+      "inputs": 476,
+      "replays": 374,
+      "root_results": 10,
+      "tables": 6,
+      "two_tail_replays": 40
+    },
+    "source": "fresh extraction of the final standalone-repository ZIP; all documented commands and all 100 fixed campaign chunks were executed sequentially with one worker"
+  },
+  "input_summary": {
+    "bits": 1,
+    "budget": 0,
+    "faults_per_world": 0,
+    "instructions": 1,
+    "memory_size": 10,
+    "metric": "hamming",
+    "program": [
+      [
+        "emit",
+        0
+      ]
+    ],
+    "registers": 1,
+    "weights": [
+      1
+    ],
+    "worlds": 1024
+  },
+  "observed_post_fix": {
+    "checker": {
+      "command": "python -m repair.cli check inputs/regression/oracle-1024-no-faults.json <solver-output>",
+      "feasible": true,
+      "maximum_replay_loss": 0,
+      "replay_worlds": 1024,
+      "resource_observation": "elapsed=0.57\nmaxrss_kib=94504\nexit=0\n",
+      "return_code": 0,
+      "value": 0
+    },
+    "oracle": {
+      "combinations": 1024,
+      "command": "python -m repair.cli oracle inputs/regression/oracle-1024-no-faults.json",
+      "hindsight": 0,
+      "path_count": 1024,
+      "resource_observation": "elapsed=0.57\nmaxrss_kib=94116\nexit=0\n",
+      "return_code": 0,
+      "stderr": "",
+      "value": 0
+    },
+    "solver": {
+      "certificate_nodes": 1,
+      "command": "python -m repair.cli solve inputs/regression/oracle-1024-no-faults.json",
+      "resource_observation": "elapsed=0.57\nmaxrss_kib=94248\nexit=0\n",
+      "return_code": 0,
+      "value": 0
+    }
+  },
+  "publication_recheck": {
+    "appendix_pdf": {
+      "changed_render_pages": [
+        3,
+        4
+      ],
+      "pages": 4
+    },
+    "bibliography_items": 30,
+    "figure_source_byte_mismatches": [],
+    "figure_source_files_compared": 4,
+    "main_pdf": {
+      "changed_render_pages": [
+        11
+      ],
+      "figure_render_pages_unchanged": [
+        5,
+        10
+      ],
+      "pages": 12
+    },
+    "theorem_or_campaign_claim_changed": false
+  }
+}

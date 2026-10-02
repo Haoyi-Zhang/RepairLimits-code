@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "case": "chain-1-0",
+      "worlds": 2,
+      "instructions": 2,
+      "word_bits": 1,
+      "uniform_optimum": 1,
+      "hindsight_optimum": 0,
+      "certificate_nodes": 3,
+      "oracle_paths": 4,
+      "oracle_combinations": 4,
+      "forged_zero_rejected": true
+    },
+    {
+      "case": "chain-3-1",
+      "worlds": 8,
+      "instructions": 6,
+      "word_bits": 1,
+      "uniform_optimum": 2,
+      "hindsight_optimum": 0,
+      "certificate_nodes": 15,
+      "oracle_paths": 32,
+      "oracle_combinations": 44,
+      "forged_zero_rejected": true
+    },
+    {
+      "case": "chain-4-0",
+      "worlds": 16,
+      "instructions": 8,
+      "word_bits": 1,
+      "uniform_optimum": 4,
+      "hindsight_optimum": 0,
+      "certificate_nodes": 31,
+      "oracle_paths": 256,
+      "oracle_combinations": 1936,
+      "forged_zero_rejected": true
+    }
+  ],
+  "cpu_seconds": 0.019229670000000088,
+  "wall_seconds": 0.020010529000046517,
+  "peak_rss_kib": 93732,
+  "workers": 1
+}

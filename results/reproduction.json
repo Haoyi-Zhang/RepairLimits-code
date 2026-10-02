@@ -1,0 +1,82 @@
+{
+  "assurance": {
+    "errors": [],
+    "failures": [],
+    "skipped": [],
+    "successful": true,
+    "tests": 16
+  },
+  "clean_source": "fresh extraction of a temporary standalone-repository ZIP; inputs and results were deleted before execution",
+  "clean_summary": {
+    "abstract_games": 98304,
+    "abstract_obstruction": 3072,
+    "abstract_repairable": 95232,
+    "chunks": 100,
+    "cpu_seconds_completed_chunks": 73.852731904,
+    "explicit_instances": 374,
+    "guarded_deletion_checks": 252,
+    "oracle_checked_instances": 349,
+    "peak_rss_kib_completed_chunks": 151216,
+    "symbolic_checks": 80,
+    "symbolic_outcomes": {
+      "checked": 68,
+      "unknown-node-cap": 12
+    },
+    "timing_obstruction": 20,
+    "timing_repairable": 40,
+    "zero_baseline_strictly_worse": 208
+  },
+  "comparison_rule": "File sets and JSON/CSV structures were compared directly. JSON resource fields cpu_seconds, wall_seconds, peak_rss_kib, cpu_seconds_completed_chunks, and peak_rss_kib_completed_chunks, plus the matching cohorts.csv CPU/RSS columns, were excluded. No hash manifest was created.",
+  "comparison_scope": {
+    "inputs": 474,
+    "results/certificates": 374,
+    "results/chunks": 100,
+    "results/replays": 374,
+    "results/root_scientific": 6,
+    "results/tables": 6,
+    "results/two-tail": 40
+  },
+  "date": "2026-09-17",
+  "differences": [],
+  "exclusions": [
+    "CPU time",
+    "elapsed wall time",
+    "peak RSS"
+  ],
+  "execution": "Three pilots, the 16 assurance groups, and all 100 deterministic campaign chunks were executed sequentially with one worker. Two outer tool calls reached the environment wall limit while guarded-11 and symbolic-21 were active. Neither active chunk had published its atomic result; each missing fixed index was then executed once to completion. Aggregation and final audit succeeded.",
+  "file_set_differences": [],
+  "final_audit": {
+    "abstract_games_accounted": 98304,
+    "bibliography_rows_checked": 30,
+    "chunks_checked": 100,
+    "exact_oracles_recomputed": 349,
+    "explicit_certificates_rechecked": 374,
+    "external_resource_rows_checked": 35,
+    "policy_replays_recomputed": 374,
+    "status": "pass",
+    "symbolic_rows_accounted": 80,
+    "two_tail_replays_recomputed": 40
+  },
+  "notes": [
+    "Each chunk writes through a temporary file and publishes only after successful completion; no partial result was accepted.",
+    "The retained final evidence is the output of this clean run.",
+    "The 12 node-cap configurations remain unknown-node-cap; resource exhaustion was not relabeled as infeasibility.",
+    "Comparison covered pilots, assurance, final audit, two-tail witnesses, all generated inputs, certificates, replays, chunks, and aggregate tables."
+  ],
+  "orchestration": {
+    "active_interrupted_child_cpu_upper_bound_seconds": 80,
+    "completed_chunk_cpu_seconds": 73.852731904,
+    "completed_duplicate_chunks": 0,
+    "conservative_campaign_chunk_cpu_upper_bound_seconds": 153.852731904,
+    "exact_all_session_cpu_known": false,
+    "external_wall_interruptions": 2,
+    "interrupted_active_chunk_results_published": false,
+    "interrupted_active_chunks": [
+      "guarded-11",
+      "symbolic-21"
+    ]
+  },
+  "same_scientific_outcomes": true,
+  "scientific_files_compared": 1374,
+  "status": "pass"
+}
