@@ -101,8 +101,4 @@ See `docs/model.md`, `docs/resources.md`, `bibliography_verification.csv`, and t
 Original code, generated inputs, and original artifact documentation are covered
 by `LICENSE`. Literature is attributed in `external_resources.csv`; the 30 manuscript entries
 are audited in `bibliography_verification.csv`. No copyrighted research PDF or
-external implementation source is bundled. OpenAI GPT models generated substantive
-portions of the research, proofs, implementation, tests, and writing; GPT-5.6 Sol
-Pro performed the final audit and repair pass. This internal artifact does not
-establish human authorship approval or external-submission eligibility. No
-repository URL is asserted.
+external implementation source is bundled.
