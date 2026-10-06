@@ -1,0 +1,70 @@
+name: Finite scientific checks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-campaign:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONHASHSEED: '0'
+      PYTHONOPTIMIZE: '0'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Run the entire owned finite campaign
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p raw-output
+          ulimit -v 3145728
+          timeout --kill-after=10s 900s sh reproduce.sh >raw-output/reproduce.stdout 2>raw-output/reproduce.stderr
+      - name: Require frozen coverage and successful assurance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B - <<'PY' >raw-output/coverage.stdout 2>raw-output/coverage.stderr
+          import json
+          from pathlib import Path
+          summary = json.loads(Path('results/summary.json').read_text())
+          expected = {
+              'chunks': 100, 'explicit_instances': 374,
+              'oracle_checked_instances': 349, 'abstract_games': 98304,
+              'abstract_repairable': 95232, 'abstract_obstruction': 3072,
+              'guarded_deletion_checks': 252, 'timing_repairable': 40,
+              'timing_obstruction': 20, 'symbolic_checks': 80,
+              'symbolic_outcomes': {'checked': 68, 'unknown-node-cap': 12},
+          }
+          for key, value in expected.items():
+              if summary.get(key) != value:
+                  raise ValueError(f'coverage mismatch: {key}')
+          assurance = json.loads(Path('results/assurance.json').read_text())
+          if not assurance['successful'] or assurance['tests'] != 22 or assurance['skipped']:
+              raise ValueError('assurance group failure or coverage drift')
+          audit = json.loads(Path('results/final-audit.json').read_text())
+          if audit['status'] != 'pass' or audit['exact_oracles_recomputed'] != 349:
+              raise ValueError('retained-evidence audit failed')
+          print(json.dumps({'coverage': expected, 'assurance_groups': assurance['tests']}, sort_keys=True))
+          PY
+      - name: Upload raw finite outcomes even after failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: finite-scientific-results
+          path: |
+            raw-output/
+            results/
+          if-no-files-found: error
+          retention-days: 14

@@ -48,10 +48,27 @@ inputs/results, not source files. Each of its 100 campaign chunks can instead be
 run separately using `python -m repair.campaign COHORT INDEX`; the complete index
 ranges are in `repair/aggregate.py` and `reproduce.sh`. Interrupted chunks do not
 publish a completed chunk result; rerun that chunk. No file is downloaded.
-Heaviest recorded completed chunks take about 32 CPU seconds in the research
-execution; slower systems can hit the fixed 40-CPU-second limit. Such termination
+The four largest guarded chunks use sequential slices of at most eight world
+deletions, with no change to the logical 100-chunk campaign or its 252 deletion
+checks. Each process retains the 40-CPU-second and 3-GiB limits. The logical
+chunk records the sum of its children’s CPU time and their largest RSS; its
+aggregate CPU can exceed 40 seconds. A child failure leaves no completed new
+chunk result. Slower systems can still hit a per-process limit. Such termination
 is **unknown**, never proof of infeasibility. BDD node caps are deliberately not
 raised to turn unfavorable outcomes into successes.
+
+The current assurance suite has 22 test groups. The retained POSIX campaign
+records 16; two added observation-boundary groups exercise six guarded program
+variants without changing the frozen cohort counts. They distinguish a value
+overwritten before a decision from one saved in another visible register.
+
+For the flat standalone repository, `.github/workflows/scientific-checks.yml`
+prepares the same complete campaign on Ubuntu 24.04 for pushes to `main` and
+manual dispatch. It uses a 15-minute whole-campaign wall limit, the existing
+per-process limits and fixed diagram caps, strict coverage gates, and an
+always-run upload of the nonhidden `raw-output/` logs and `results/` tree. This
+workflow is prepared configuration, not a record of a hosted run. The separate
+repository-integrity workflow checks source syntax and materials only.
 
 The CLI distinguishes phases. Malformed JSON, schema violations, and invalid
 semantic evidence return exit code 2 with `status: rejected`; a declared search

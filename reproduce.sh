@@ -1,5 +1,5 @@
 #!/bin/sh
-# All children are sequential. Each campaign command enforces its own 40 CPU-s cap.
+# One scientific child at a time; each process has a 40 CPU-s cap.
 set -eu
 cd "$(dirname "$0")"
 export PYTHONDONTWRITEBYTECODE=1

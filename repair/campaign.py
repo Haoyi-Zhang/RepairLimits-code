@@ -3,7 +3,7 @@
 No external programs, datasets, model services, or network access are used.
 """
 from __future__ import annotations
-import argparse,copy,itertools,json,os,resource,time
+import argparse,copy,itertools,json,os,resource,subprocess,sys,time
 from pathlib import Path
 from .cases import (chain,correlation_cases,mechanism_cases,guarded_spec,
                     observed_guarded_spec,expand_guarded)
@@ -67,26 +67,69 @@ def run_chains(d):
     return rows
 
 
-def run_guarded(index):
+def guarded_case(index):
     if not 0<=index<12: raise ValueError('guarded chunk')
     d=index//2+1;mixed=bool(index%2)
     spec,premise=guarded_spec(d,mixed)
-    c=expand_guarded(spec)
+    return d,spec,premise,expand_guarded(spec)
+
+
+def guarded_base(index):
+    d,spec,premise,c=guarded_case(index)
     row=evaluate(c,oracle=d<=4)
     symbolic=classify_contract(spec,premise)
     if row['value']!=symbolic['uniform_optimum'] or symbolic['minimum_core']!=2**d:
         raise AssertionError('affine obstruction disagreement')
+    row['symbolic']=symbolic
+    write_json(Path('inputs/implicit')/(spec['id']+'.json'),{'specification':spec,'premise':premise})
+    return row
+
+
+def guarded_deletions(index,begin,end):
+    _,_,_,c=guarded_case(index)
+    if not 0<=begin<end<=len(c['worlds']): raise ValueError('deletion slice')
     deleted=[]
-    for world in c['worlds']:
+    for world in c['worlds'][begin:end]:
         part=copy.deepcopy(c)
         part['worlds']=[w for w in part['worlds'] if w['id']!=world['id']]
         cert=synthesize(part);checked=check_certificate(part,cert)
         policy_replay(part,cert)
         if checked['value']!=0: raise AssertionError('deletion does not restore feasibility')
         deleted.append({'removed':world['id'],'value':checked['value']})
-    row['all_world_deletions']=deleted;row['symbolic']=symbolic
-    write_json(Path('inputs/implicit')/(spec['id']+'.json'),{'specification':spec,'premise':premise})
+    return deleted
+
+
+def run_guarded(index):
+    row=guarded_base(index)
+    row['all_world_deletions']=guarded_deletions(index,0,2**(index//2+1))
     return [row]
+
+
+def guarded_sliced(index):
+    """Same logical chunk; one bounded child at a time, without dropping worlds."""
+    count=2**(index//2+1)
+    parts=[]
+    def invoke(kind,begin=0,end=0):
+        command=[sys.executable,'-B','-m','repair.campaign','guarded',str(index),
+                 '--guarded-part',kind,'--begin',str(begin),'--end',str(end)]
+        child=subprocess.run(command,text=True,capture_output=True,timeout=120,check=False)
+        if child.returncode:
+            raise RuntimeError(f'guarded {index} {kind} [{begin},{end}) failed '
+                               f'with exit {child.returncode}: {child.stderr}')
+        part=json.loads(child.stdout)
+        if (part['chunk'],part['part'],part['begin'],part['end'])!=(index,kind,begin,end):
+            raise ValueError('guarded child identity')
+        parts.append({key:value for key,value in part.items() if key!='results'})
+        return part['results']
+    row=invoke('base')
+    deleted=[]
+    for begin in range(0,count,8):
+        deleted.extend(invoke('deletions',begin,min(begin+8,count)))
+    _,_,_,case=guarded_case(index)
+    if [r['removed'] for r in deleted]!=[w['id'] for w in case['worlds']]:
+        raise ValueError('guarded deletion coverage')
+    row['all_world_deletions']=deleted
+    return [row],parts
 
 
 def run_timing(index):
@@ -188,14 +231,33 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('cohort',choices=['correlations','mechanisms','chains','guarded','timing','abstract','symbolic'])
     parser.add_argument('index',type=int)
+    parser.add_argument('--guarded-part',choices=['base','deletions'])
+    parser.add_argument('--begin',type=int,default=0)
+    parser.add_argument('--end',type=int,default=0)
     args=parser.parse_args()
+    if args.guarded_part and args.cohort!='guarded': parser.error('guarded-only part')
     resource.setrlimit(resource.RLIMIT_AS,(3*1024**3,3*1024**3))
     resource.setrlimit(resource.RLIMIT_CPU,(40,40))
     cpu,wall=time.process_time(),time.monotonic()
-    result=globals()['run_'+args.cohort](args.index)
-    output={'cohort':args.cohort,'chunk':args.index,'results':result,
+    if args.guarded_part:
+        result=(guarded_base(args.index) if args.guarded_part=='base' else
+                guarded_deletions(args.index,args.begin,args.end))
+        print(json.dumps({'chunk':args.index,'part':args.guarded_part,
+            'begin':args.begin,'end':args.end,'results':result,
             'cpu_seconds':time.process_time()-cpu,'wall_seconds':time.monotonic()-wall,
-            'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,'workers':1}
+            'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss}))
+        return
+    parts=[]
+    if args.cohort=='guarded' and args.index>=8:
+        result,parts=guarded_sliced(args.index)
+    else:
+        result=globals()['run_'+args.cohort](args.index)
+    output={'cohort':args.cohort,'chunk':args.index,'results':result,
+            'cpu_seconds':time.process_time()-cpu+sum(p['cpu_seconds'] for p in parts),
+            'wall_seconds':time.monotonic()-wall,
+            'peak_rss_kib':max([resource.getrusage(resource.RUSAGE_SELF).ru_maxrss]+
+                              [p['peak_rss_kib'] for p in parts]),'workers':1}
+    if parts: output['sequential_parts']=parts
     target=Path('results/chunks')/(args.cohort+'-'+str(args.index)+'.json')
     write_json(target,output)
     print(json.dumps({'cohort':args.cohort,'chunk':args.index,

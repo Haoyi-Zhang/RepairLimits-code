@@ -208,6 +208,39 @@ class CertificateTests(unittest.TestCase):
 
 
 class SymbolicTests(unittest.TestCase):
+    def test_overwritten_load_is_not_a_sensor(self):
+        # Only values still present at a decision enter the observation. Two
+        # healthy loads with no intervening decision do not expose both bits.
+        for mixed in (False,True):
+            for leaks,expected in ((((1,2),(1,0)),1),(((1,0),(1,2)),0)):
+                with self.subTest(mixed=mixed,leaks=leaks):
+                    spec,premise=observed_guarded_spec(3,mixed,leaks)
+                    symbolic=classify_contract(spec,premise)
+                    case=expand_guarded(spec)
+                    self.assertEqual(symbolic['uniform_optimum'],expected)
+                    self.assertEqual(complete(case),expected)
+                    if expected==0:
+                        self.assertEqual(len(replay_two_tail(case,symbolic['policy'])),8)
+
+    def test_every_visible_register_matters(self):
+        for mixed in (False,True):
+            spec,premise=observed_guarded_spec(3,mixed,((1,2),(1,0)))
+            # Save the future-dependent first load in r2 before r1 is
+            # overwritten. The later accumulator initialization overwrites r2,
+            # so the continuation and healthy output are unchanged.
+            position=spec['world_family']['faults'][1]-1
+            spec['program'].insert(position,['copy',2,'r1'])
+            spec['world_family']['faults']=[pc+(pc>=position)
+                                           for pc in spec['world_family']['faults']]
+            with self.subTest(mixed=mixed):
+                symbolic=classify_contract(spec,premise)
+                self.assertEqual(symbolic['classification'],'repairable')
+                self.assertEqual(symbolic['policy']['component_kind'],'register')
+                self.assertEqual(symbolic['policy']['component_index'],2)
+                case=expand_guarded(spec)
+                self.assertEqual(complete(case),0)
+                self.assertEqual(len(replay_two_tail(case,symbolic['policy'])),8)
+
     def test_bdd_truth_tables(self):
         for order in (['a','b','c'],['c','b','a']):
             b=BDD(order);a,z,c=(b.var(n) for n in ('a','b','c'))

@@ -36,7 +36,7 @@ In particular, if U is an obstruction then it has an obstruction of size at most
 
 ### Proof and attribution
 
-Theorem 1.2 of Alon, Jin and Sudakov, "The Helly number of Hamming balls and related problems," arXiv:2405.10275, states that the intersection of any finite family of radius-B Hamming balls in X^n equals the intersection of at most 2^(B+1) members, for n > B. Apply that equality to the balls centered at R(w), and take its preimage under F. Preimages preserve intersections and equality. No surjectivity, convexity, injectivity or unrestricted candidate space is required. This is a direct corollary of the cited theorem, not a new Helly bound.
+Theorem 1.2 of Alon, Jin and Sudakov, "The Helly number of Hamming balls and related problems," arXiv:2405.10275v2, states that the intersection of any finite family of radius-B Hamming balls in X^n equals the intersection of at most 2^(B+1) members, for n > B. Apply that equality to the balls centered at R(w), and take its preimage under F. Preimages preserve intersections and equality. No surjectivity, convexity, injectivity or unrestricted candidate space is required. This is a direct corollary of the cited theorem, not a new Helly bound.
 
 In particular, the familiar example consisting of all d-bit reference strings with budget d-1 is the antipodal lower-bound construction in their Proposition 2.1 (itself attributed there to earlier work). It must not be presented as a new result of this project.
 
@@ -109,10 +109,6 @@ Necessity follows from functionality of a policy. For sufficiency, take the unio
 
 For a fixed continuation with per-output losses delta_i(w), max_w sum_i delta_i(w) <= sum_i max_w delta_i(w). The inequality may be strict: for the m one-hot Boolean worlds and a zero output word, the left side is one and the right side is m. Consequently summing local worst-case debts is a conservative upper bound, not an exact worst-world loss. Conversely, resetting a budget at each failure can admit a continuation whose cumulative loss exceeds the single declared end-to-end budget. The general checker uses complete terminal traces and preserves world identity; it does not infer a metric on final behavior from the replacement values alone.
 
-## Status
-
-The arguments above are mathematical proofs written for this project. They are not externally refereed and are not mechanically verified general theorems. The two pilot result files contain finite and symbolic execution evidence for small instances. A systematic campaign, certificate mutation suite, literature-supported novelty assessment and manuscript are separate obligations; the existence of this document does not establish their completion.
-
 ## 8. An exact observation-timing criterion for unique-failure contracts
 
 Let the choice positions be 0,...,d-1, each with a nonempty finite alphabet
@@ -169,8 +165,8 @@ that component alone. QED.
 This is a fixed-point/diagonalization argument, not a claim that causality or
 fixed-point induction is a newly discovered mathematical principle. Its
 research use here is to connect a checkable program-semantic premise to both
-a repair witness and an exact obstruction-size conclusion. The core statement is frozen for systematic falsification; its novelty and
-venue significance require the accompanying closest-work analysis.
+a repair witness and an exact obstruction-size conclusion. These are written
+mathematical proofs, not externally refereed or mechanically verified theorems.
 
 **Corollary 8 (affine sensor timing).** Let g(r)=Ar+b over F_2, with A
 invertible. Suppose a sensor observes Hx after a fixed prefix of length k and
