@@ -213,13 +213,18 @@ def classify_contract(spec, certificate, order='interleaved', node_limit=200000,
         expected = b.op('and',expected,equal)
     if actual!=expected: raise ValueError('output is not the certified affine equality')
     substitutions = {b.ranks[x]:g for x,g in zip(xs,image)}
+    # One immutable result per root under this invocation's fixed diagonal map.
+    diagonal_cache = {}
     witness = None
     for decision,(pc,registers,trace) in enumerate(observations):
         future = {b.ranks[r] for r in rs[decision:]}
         for kind,components in (('register',registers),('output',trace)):
             for component,formula in enumerate(components):
-                diagonal = b.compose(formula,substitutions)
-                dependent = b.support(diagonal)&future
+                if formula not in diagonal_cache:
+                    diagonal = b.compose(formula,substitutions)
+                    diagonal_cache[formula] = (diagonal,frozenset(b.support(diagonal)))
+                diagonal,support = diagonal_cache[formula]
+                dependent = support&future
                 if not dependent: continue
                 pivot = min(dependent)
                 low = b.restrict(diagonal,pivot,0)

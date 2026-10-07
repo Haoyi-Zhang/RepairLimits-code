@@ -62,6 +62,22 @@ records 16; two added observation-boundary groups exercise six guarded program
 variants without changing the frozen cohort counts. They distinguish a value
 overwritten before a decision from one saved in another visible register.
 
+Six separate pure finite controls run with
+`python -B tests/symbolic_cache_regression.py`, explicitly in scientific CI.
+They use test-local concrete truth tables and two-tail replay, every-register
+visibility/overwrite controls, call-local map/order checks and exact node-cap
+boundaries. They do not import POSIX resource controllers, replace the 22-group
+native assurance suite, or constitute a new full-campaign receipt.
+
+Within one symbolic classification, repeated observation roots share only their
+diagonal BDD root and immutable support under that call's fixed substitution.
+Every component still intersects support with its current future-action set.
+Prefix/policy substitutions for positive replay are recomputed separately;
+no entries survive into another BDD, map, call or variable order. At most 20
+decisions and 65 visible register/output components bound this local index to
+1,300 entries. Diagram allocation caps, first-witness order and unknown outcomes
+are unchanged. No measured speedup or broader semantic guarantee is claimed.
+
 For the flat standalone repository, `.github/workflows/scientific-checks.yml`
 prepares the same complete campaign on Ubuntu 24.04 for pushes to `main` and
 manual dispatch. It uses a 15-minute whole-campaign wall limit, the existing

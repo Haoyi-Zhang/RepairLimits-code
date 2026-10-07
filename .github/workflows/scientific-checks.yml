@@ -58,6 +58,13 @@ jobs:
               raise ValueError('retained-evidence audit failed')
           print(json.dumps({'coverage': expected, 'assurance_groups': assurance['tests']}, sort_keys=True))
           PY
+      - name: Pure finite diagonal-cache controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          ulimit -v 3145728
+          timeout --kill-after=10s 30s python -B tests/symbolic_cache_regression.py \
+            >raw-output/symbolic-cache.stdout 2>raw-output/symbolic-cache.stderr
       - name: Upload raw finite outcomes even after failure
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
