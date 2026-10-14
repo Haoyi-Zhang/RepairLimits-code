@@ -3,7 +3,7 @@
 No external programs, datasets, model services, or network access are used.
 """
 from __future__ import annotations
-import argparse,copy,itertools,json,os,resource,subprocess,sys,time
+import argparse,copy,itertools,json,os,subprocess,sys,time
 from pathlib import Path
 from .cases import (chain,correlation_cases,mechanism_cases,guarded_spec,
                     observed_guarded_spec,expand_guarded)
@@ -228,6 +228,7 @@ def run_symbolic(index):
 
 
 def main():
+    import resource  # POSIX process limits; importing finite helpers needs none.
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('cohort',choices=['correlations','mechanisms','chains','guarded','timing','abstract','symbolic'])
     parser.add_argument('index',type=int)

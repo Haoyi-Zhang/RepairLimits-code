@@ -1,5 +1,5 @@
 """Measured exact pilot for the observation-timing dichotomy."""
-import copy,json,resource,time
+import copy,json,time
 from pathlib import Path
 from .cases import observed_guarded_spec,expand_guarded
 from .solve import synthesize
@@ -31,6 +31,7 @@ def replay_two_tail(c,policy):
 
 
 def main():
+    import resource  # The command retains its original POSIX limits.
     resource.setrlimit(resource.RLIMIT_AS,(3*1024**3,3*1024**3))
     resource.setrlimit(resource.RLIMIT_CPU,(40,40))
     cpu,wall=time.process_time(),time.monotonic()

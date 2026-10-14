@@ -1,0 +1,27 @@
+test_value_dag_mutations (test_assurance.CertificateTests.test_value_dag_mutations) ... ok
+test_world_relabel_reorder_budget (test_assurance.CertificateTests.test_world_relabel_reorder_budget) ... ok
+test_information_and_domain_monotonicity (test_assurance.DiagnosticTests.test_information_and_domain_monotonicity) ... ok
+test_local_reset_is_not_global_budget (test_assurance.DiagnosticTests.test_local_reset_is_not_global_budget) ... ok
+test_minimal_is_not_minimum (test_assurance.DiagnosticTests.test_minimal_is_not_minimum) ... ok
+test_one_hot_and_hindsight (test_assurance.DiagnosticTests.test_one_hot_and_hindsight) ... ok
+test_all_mechanism_paths (test_assurance.InstructionTests.test_all_mechanism_paths) ... ok
+test_arithmetic_truth_tables (test_assurance.InstructionTests.test_arithmetic_truth_tables) ... ok
+test_bad_reference_rejected_by_both (test_assurance.InstructionTests.test_bad_reference_rejected_by_both) ... ok
+test_distance_tables_and_missing_words (test_assurance.InstructionTests.test_distance_tables_and_missing_words) ... ok
+test_json_rejection (test_assurance.SchemaTests.test_json_rejection) ... ok
+test_malformed_cases (test_assurance.SchemaTests.test_malformed_cases) ... ok
+test_resource_caps_are_unknown (test_assurance.SchemaTests.test_resource_caps_are_unknown) ... ok
+test_affine_premise_mutations (test_assurance.SymbolicTests.test_affine_premise_mutations) ... ok
+test_bdd_truth_tables (test_assurance.SymbolicTests.test_bdd_truth_tables) ... ok
+test_every_visible_register_matters (test_assurance.SymbolicTests.test_every_visible_register_matters) ... ok
+test_overwritten_load_is_not_a_sensor (test_assurance.SymbolicTests.test_overwritten_load_is_not_a_sensor) ... ok
+test_rank_all_small_matrices (test_assurance.SymbolicTests.test_rank_all_small_matrices) ... ok
+test_child_failure_propagates (test_campaign_slices.SlicedCampaignTests.test_child_failure_propagates) ... ok
+test_deletion_partition_matches_unsliced (test_campaign_slices.SlicedCampaignTests.test_deletion_partition_matches_unsliced) ... ok
+test_invalid_bounds_rejected (test_campaign_slices.SlicedCampaignTests.test_invalid_bounds_rejected) ... ok
+test_sliced_complete_small_case (test_campaign_slices.SlicedCampaignTests.test_sliced_complete_small_case) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.027s
+
+OK

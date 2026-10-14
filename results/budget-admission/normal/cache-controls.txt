@@ -1,0 +1,11 @@
+test_actual_two_tail_witness_replay (__main__.SymbolicCacheRegression.test_actual_two_tail_witness_replay) ... ok
+test_call_local_maps_and_variable_orders (__main__.SymbolicCacheRegression.test_call_local_maps_and_variable_orders) ... ok
+test_caps_and_invalid_premises_remain_distinct (__main__.SymbolicCacheRegression.test_caps_and_invalid_premises_remain_distinct) ... ok
+test_independent_small_truth_tables (__main__.SymbolicCacheRegression.test_independent_small_truth_tables) ... ok
+test_overwrite_and_all_register_visibility (__main__.SymbolicCacheRegression.test_overwrite_and_all_register_visibility) ... ok
+test_repeated_roots_compose_once_without_skipping_components (__main__.SymbolicCacheRegression.test_repeated_roots_compose_once_without_skipping_components) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.044s
+
+OK

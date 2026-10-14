@@ -1,0 +1,14 @@
+{
+  "run": 26,
+  "successful": true,
+  "excluded": [
+    {
+      "test": "test_assurance.SchemaTests.test_resource_caps_are_unknown",
+      "reason": "contains POSIX CLI subprocesses; resource unavailable; finite caps separately tested"
+    }
+  ],
+  "skipped": [],
+  "failures": [],
+  "errors": [],
+  "optimized": 0
+}

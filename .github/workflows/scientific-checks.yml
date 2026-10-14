@@ -51,7 +51,7 @@ jobs:
               if summary.get(key) != value:
                   raise ValueError(f'coverage mismatch: {key}')
           assurance = json.loads(Path('results/assurance.json').read_text())
-          if not assurance['successful'] or assurance['tests'] != 22 or assurance['skipped']:
+          if not assurance['successful'] or assurance['tests'] != 27 or assurance['skipped']:
               raise ValueError('assurance group failure or coverage drift')
           audit = json.loads(Path('results/final-audit.json').read_text())
           if audit['status'] != 'pass' or audit['exact_oracles_recomputed'] != 349:

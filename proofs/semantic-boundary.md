@@ -191,3 +191,57 @@ substituted back into the actual output diagram, which must reduce to zero.
 This is executable exact finite reasoning under a trusted, unmechanized BDD
 implementation; diagrams and caches can grow exponentially. Resource failure
 is not a classification of the input.
+
+## Proposition 9: complete value evidence
+
+Assume the validated instruction, observation and trace-loss semantics. If the
+semantic checker accepts a complete value DAG rooted at the initial knowledge
+state with value v, then v is the exact finite uniform-policy optimum. Following
+its selected actions gives a uniform policy attaining v; budget feasibility is
+exactly v <= B. This is the main article's value-certificate proposition, not an
+additional combinatorial result.
+
+### Proof
+
+A checking obligation is a pair of a node identifier and the reconstructed
+world-indexed knowledge state. The identifier alone is insufficient when a
+node is shared. Normalize each world through ordinary instructions to its next
+decision or termination. At a leaf, reconstruction determines precisely all
+remaining worlds, their actual terminal traces and their healthy references.
+Recomputing each distance and their maximum establishes the terminal value.
+The checker requires exactly these costs and worlds.
+
+At a split, reconstruction supplies exactly the nonempty visible-observation
+partition. All and only these successors are required. Inductively each
+successor's checked value is its semantic optimum; their maximum is therefore
+the split optimum. At a choice, every legal common palette action must have a
+successor obligation with the state actually reached by that action. Induction
+gives all successor optima. Their minimum is precisely the choice optimum,
+and the selected action must attain it. Deleting a cheap choice alternative or
+an expensive observation branch cannot satisfy exact coverage.
+
+The accepted reachable DAG is finite and acyclic. Reverse reachable-node
+induction establishes the equations for every reconstructed obligation,
+including distinct states associated with a shared identifier. Proposition 1
+then identifies its root value with the exact fixed-world policy optimum.
+At each complete observed history the selected action is common to all
+remaining worlds. Different observed histories may have different suffixes;
+reusing an equal knowledge-state suffix does not provide a world identifier
+to the handler. Combining these suffix choices gives a single deterministic
+full-history policy attaining the checked value. The final comparison v <= B
+is the definition of feasibility.
+
+Acceptance is conditional on the parser and two executable semantics, not a
+mechanized proof of Python. A format-malformed node dictionary is rejected.
+A well-shaped dictionary within the format bound may exceed a smaller
+invocation's storage quota, or semantic reconstruction may exceed its visit
+quota. Either resource outcome is unknown and does not establish an upper or
+lower bound for the uncompleted obligation. It cannot be used as an input core.
+
+The no-certificate control in `repair.value_only` implements the same equations
+using the audit VM, retaining the minimizing suffix action instead of every
+certificate edge and per-leaf cost map. Proposition 1 justifies its exact value
+and attaining uniform policy under trusted semantics. It exports no separately
+checkable optimality evidence; equality of objectives is not equality of trust
+interfaces. Neither this implementation nor its cost comparison is a new
+minimax or certifying-algorithm theorem.

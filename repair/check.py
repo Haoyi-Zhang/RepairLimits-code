@@ -105,7 +105,12 @@ def check_certificate(c: dict, cert: dict, max_nodes=200000) -> dict:
     if type(cert) is not dict or set(cert) != {'case','root','value','nodes'} or cert['case'] != c['id']:
         raise ValueError('certificate header')
     nodes = cert['nodes']
-    if type(nodes) is not dict or not 1 <= len(nodes) <= max_nodes: raise ValueError('node count')
+    if type(nodes) is not dict or not 1 <= len(nodes) <= 200000:
+        raise ValueError('node count')
+    # The format bound and this invocation's resource quota are different.
+    # A well-shaped larger DAG has not been refuted by a smaller checker quota.
+    if len(nodes) > max_nodes:
+        raise ResourceExhausted('certificate storage budget exceeded')
     if type(cert['value']) is not int or cert['value'] < 0: raise ValueError('root value')
     ws = {w['id']:w for w in c['worlds']}
     ideal = {k:run(c,w,start(c,w),ideal=True).output for k,w in ws.items()}

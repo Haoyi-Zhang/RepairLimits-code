@@ -15,7 +15,8 @@ def complete(case):
     certificate=synthesize(case)
     out=check_certificate(case,certificate)
     policy_replay(case,certificate)
-    assert exact_oracle(case)['value']==out['value']
+    if exact_oracle(case)['value'] != out['value']:
+        raise AssertionError('compatible-path oracle disagreement')
     return out['value']
 
 
@@ -54,7 +55,7 @@ class SchemaTests(unittest.TestCase):
         c=chain(3)
         with self.assertRaises(RuntimeError):synthesize(c,node_limit=2)
         cert=synthesize(c)
-        with self.assertRaises(ValueError):check_certificate(c,cert,max_nodes=2)
+        with self.assertRaises(RuntimeError):check_certificate(c,cert,max_nodes=2)
         for n in (0,True,200001):
             with self.assertRaises(ValueError):synthesize(c,node_limit=n)
         s,p=guarded_spec(3)

@@ -57,7 +57,7 @@ chunk result. Slower systems can still hit a per-process limit. Such termination
 is **unknown**, never proof of infeasibility. BDD node caps are deliberately not
 raised to turn unfavorable outcomes into successes.
 
-The current assurance suite has 22 test groups. The retained POSIX campaign
+The current assurance suite has 27 discoverable test groups. The retained POSIX campaign
 records 16; two added observation-boundary groups exercise six guarded program
 variants without changing the frozen cohort counts. They distinguish a value
 overwritten before a decision from one saved in another visible register.
@@ -77,6 +77,16 @@ no entries survive into another BDD, map, call or variable order. At most 20
 decisions and 65 visible register/output components bound this local index to
 1,300 entries. Diagram allocation caps, first-witness order and unknown outcomes
 are unchanged. No measured speedup or broader semantic guarantee is claimed.
+
+`repair.evidence_recheck` is a separate portable semantic recheck on the retained
+inputs, with an exact no-certificate minimax control. It measures complete
+input-to-replay paths, including certificate serialization and checking, and
+preserves unfavorable overhead. It also recomputes all abstract raw rows,
+symbolic outcomes, and guarded deletions. It does not impose or impersonate
+POSIX process limits. See `docs/value-cost.md` and
+`results/budget-admission/` for the bounded Windows normal/optimized results.
+The current host excludes one group containing POSIX CLI subprocesses; that
+group is not counted as passed. The six pure cache controls run separately.
 
 For the flat standalone repository, `.github/workflows/scientific-checks.yml`
 prepares the same complete campaign on Ubuntu 24.04 for pushes to `main` and
@@ -132,6 +142,8 @@ See `docs/model.md`, `docs/resources.md`, `bibliography_verification.csv`, and t
 ## Provenance and license
 
 Original code, generated inputs, and original artifact documentation are covered
-by `LICENSE`. Literature is attributed in `external_resources.csv`; the 30 manuscript entries
-are audited in `bibliography_verification.csv`. No copyrighted research PDF or
+by `LICENSE`. Literature is attributed in `external_resources.csv`; 30 of the 52 cited manuscript entries
+have retained metadata-verification rows in `bibliography_verification.csv`.
+The other 22 entries are not certified by that file. Metadata verification is
+not full-text verification. No copyrighted research PDF or
 external implementation source is bundled.
